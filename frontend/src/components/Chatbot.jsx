@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 
+const BASE_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+
 export default function Chatbot({ datasetId }) {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState([]);
@@ -32,7 +34,7 @@ export default function Chatbot({ datasetId }) {
 
         try {
             const response = await fetch(
-                `http://127.0.0.1:8000/chat/${datasetId}`,
+                `${BASE_URL}/chat/${datasetId}`,
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
